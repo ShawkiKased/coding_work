@@ -1,15 +1,21 @@
-//2.Given a string of words, return the length of the shortest word(s).The given data will 
-//always be a string and will never be empty.
+// 2.Given a string of words, return the length of the shortest word(s).The given data will 
+// always be a string and will never be empty.
 
 function short_count(str) {
-    let az = "abcdefghijklmnopqrstuvwxyz"
+    let az = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let words = str.split(" ");
     let min = words[0].length;
-    for (i = 0; i < words.length; i++) {
-        if (words[i].length < min) min = words[i].length;
-    }
+    words.forEach( el => {
+        let count = 0;
+        for (i = 0; i < el.length; i++) {
+            if (az.includes(el[i])) {
+                count++;
+            }
+        }
+        if (min > count) min = count;
+    })
+
     return min;
-    
 }
 
 //test cases:
