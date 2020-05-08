@@ -2,19 +2,29 @@
 // always be a string and will never be empty.
 
 function short_count(str) {
+    //first we need to take care of things that aren't letters like comma's and apostrophe's.
+    //We'll set a variable to include both lowercase and uppercase letters.
     let az = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //We want to find the minimum value a word can be so we will set min to be Infinity since any number can replace it.
+    let min = Infinity;
+    //We then split the sentence into an array of words
     let words = str.split(" ");
-    let min = words[0].length;
+    //We want to now look at each individual word, we will do this with a forEach loop
     words.forEach( el => {
+        //Now inside of each word, we want to count how many letters there that but also be concious of things
+        //that aren't letters, we will use the includes method to check every element and only add to the count
+        //if they are included in our alphabet
         let count = 0;
         for (i = 0; i < el.length; i++) {
             if (az.includes(el[i])) {
                 count++;
             }
         }
+        //after the count is done, we will compare it with the minimum value, and if the count is smaller
+        //It will replace it as the new Minimum value for a word in the sentence.
         if (min > count) min = count;
     })
-
+    //Finally, we will return the final definitive length of the smallest word in the sentence.
     return min;
 }
 
